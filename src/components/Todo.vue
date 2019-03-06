@@ -1,17 +1,36 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="todo">
+    <h1>VueToDo</h1>
+    <input class="addTodo"
+      placeholder="Add Todo"
+      v-model="newTodo"
+      @keyup.enter="addTodo">
+    <ul class="todoList">
+      <li v-for="todo in todos"
+        :key="todo"
+        class="todo"> {{ todo }}
+        </li>
+    </ul>
   </div>
 </template>
+
 <script>
 export default {
   name: 'Todo',
   data() {
     return {
-      msg: 'Hello Vue!',
+      todos: [],
     };
   },
+  methods: {
+    addTodo: function () {
+      const value = this.newTodo;
+      this.todos.push(value);
+    },
+  },
 };
+
+
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
